@@ -1,0 +1,177 @@
+
+class Matrix {
+    field int size;
+    field int n;
+    field int i;
+    field Array matrix;
+    field int xxx;
+
+   constructor Matrix new(int nSize) {
+       let n = nSize;
+       let size = nSize*nSize;
+       let matrix = Array.new(size);
+       let i = 0;
+
+       while(i < size)
+       {
+           let matrix[i] = 0;
+           let i = i + 1;
+       }
+      return this;
+   }
+
+   /** Disposes */
+   method void dispose() {
+      do matrix.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+    /** Get element */
+   method int getElem(int i, int j)
+   {
+       return matrix[n*i+j];
+   }
+   /** Set element */
+   method void setElem(int i, int j, int value)
+   {
+       let matrix[n*i+j] = value;
+       return;
+   }
+
+   method int add(Matrix first){
+       var Matrix smatrix;
+       var int i,j;
+       let smatrix = Matrix.new(n);
+       let i = 0;
+       let j = 0;
+       while(i<n)
+       {
+           while(j<n)
+           {
+               do smatrix.setElem(i,j, (getElem(i,j)+first.getElem(i,j)) );
+               let j = j + 1;
+           }
+           let i = i + 1;
+           let j = 0;
+       }
+       
+       return smatrix;
+   }
+
+   method void multScalar(int scalar){
+       var int i,j;
+       let i = 0;
+       let j = 0;
+       while(i<n)
+       {
+           while(j<n)
+           {
+               do setElem(i,j, (getElem(i,j)*scalar) );
+               let j = j + 1;
+           }
+           let i = i + 1;
+           let j = 0;
+       }
+       return;
+   }
+
+   method Matrix multMat(Matrix first){
+       var Matrix smatrix;
+       var int i,j,k;
+       let smatrix = Matrix.new(n);
+       let i = 0;
+       let j = 0;
+       let k = 0;
+       while(i<n)
+       {
+           while(j<n)
+           {
+               while(k<n)
+               {
+                    //mult[i][j] += a[i][k] * b[k][j];
+                   do smatrix.setElem(i,j, smatrix.getElem(i,j) + (getElem(i,k) * first.getElem(k,j)));
+                   let k = k+1;
+               }
+               let j = j + 1;
+               let k = 0;
+           }
+           let i = i + 1;
+           let j = 0;
+       }
+       
+       return smatrix;
+   }
+
+   
+   method int norm(){
+       var int i,j,sum;
+       let i = 0;
+       let j = 0;
+       let sum = 0;
+       while(i<n)
+       {
+           while(j<n)
+           {
+               let sum = sum+(getElem(i,j)*getElem(i,j));
+               let j = j + 1;
+           }
+           let i = i + 1;
+           let j = 0;
+       }
+       
+       return Math.sqrt(sum);
+   }
+
+   method void print(){
+       var int i,j,sum;
+       let i = 0;
+       let j = 0;
+       let sum = 0;
+       while(i<n)
+       {
+           while(j<n)
+           {
+                
+	            do Output.printInt(getElem(i,j));
+                do Output.printString(",");
+                
+               let j = j + 1;
+           }
+           do Output.println();
+           let i = i + 1;
+           let j = 0;
+       }
+       
+       return;
+   }
+
+
+    function Matrix eye(int n){
+        var Matrix smatrix;
+        var int i,j;
+        let smatrix = Matrix.new(n);
+        let i = 0;
+        let j = 0;
+        while(i<n)
+        {
+           while(j<n)
+           {
+               if( (i=j))
+               {
+                   do smatrix.setElem(i,j,1);
+               }
+               let j = j + 1;
+           }
+           let i = i + 1;
+           let j = 0;
+        }
+       
+       return smatrix;
+   }
+
+
+
+}
+
+
+

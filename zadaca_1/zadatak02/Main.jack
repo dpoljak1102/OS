@@ -1,0 +1,121 @@
+class Main {
+
+	function void main() {
+
+        var int test;
+        var Matrix matrix, matrix2, matrix3;
+
+        // ************************
+        // ********** a) **********
+        //*************************
+        let matrix = Matrix.new(3);
+        let matrix2 = Matrix.new(3);
+        let matrix3 = Matrix.new(3);
+
+        //Matrix [1,2,3
+        //        4,5,6
+        //        7,8,9]
+        do matrix2.setElem(0,0,1);
+        do matrix2.setElem(0,1,2);
+        do matrix2.setElem(0,2,3);
+
+        do matrix2.setElem(1,0,4);
+        do matrix2.setElem(1,1,5);
+        do matrix2.setElem(1,2,6);
+
+        do matrix2.setElem(2,0,7);
+        do matrix2.setElem(2,1,8);
+        do matrix2.setElem(2,2,9);
+
+
+
+        // ************************
+        // ********** b) **********
+        // ************************
+        /*
+        do matrix.print();
+        do Output.println();
+        do matrix.setElem(0,0,1);
+	do matrix.print();
+        do Output.println();
+        */
+        
+
+        // ************************
+        // ********** c) **********
+        // ************************
+        /*
+        do matrix2.print();
+        
+        do Output.println();
+        do Output.println();
+        
+        do matrix2.print();
+
+        do Output.println();
+        do Output.println();
+
+        let matrix3 = matrix2.add(matrix2);
+        do matrix3.print();
+        
+        */
+
+
+        // ************************
+        // ********** d) **********
+        // ************************
+
+        //Scalar
+        /*
+        do matrix2.print();
+        do Output.println();
+        do Output.println();
+        do matrix2.multScalar(2);
+        do matrix2.print();
+        */
+        
+
+        //Matrix
+        /*
+        do matrix.setElem(0,0,1);
+        do matrix.setElem(0,1,1);
+        do matrix.setElem(0,2,1);
+
+        do matrix.print();
+        do Output.println();
+        do Output.println();
+
+        do matrix2.print();
+        do Output.println();
+        do Output.println();
+
+        let matrix3 = matrix.multMat(matrix2);
+        do matrix3.print();
+        */
+        
+
+        // ************************
+        // ********** e) **********
+        // ************************
+        /*
+        do Output.printString("Norm ");
+	do Output.printInt(matrix2.norm());
+        do Output.println();
+        */
+
+        // ************************
+        // ********** f) **********
+        // ************************
+        /*
+        let matrix3 = Matrix.eye(3);
+        do matrix3.print();
+        */
+
+        
+        do matrix.dispose();
+        do matrix2.dispose();
+        do matrix3.dispose();
+        return;
+
+	}
+}

@@ -1,0 +1,113 @@
+class Main {
+
+	function void main() {
+
+        //Variables
+        var int i,n;
+        var char c;
+        var String inputString;
+        var String bracketsObject;
+        var String bracketsObject2;
+        var int flag;
+        
+        //Constructor for stack
+        var StackChars mystack;
+        let mystack = StackChars.new(100);
+        let bracketsObject = "([{";
+        let bracketsObject2 = ")]}";
+
+
+
+        //********************************
+        //          INPUTS  
+        // *******************************
+        
+        let inputString = "(1 + x + y))) "; // fail
+        //let inputString = "(1 + 2 + [3)]"; // fail
+        //let inputString = "(1 + [x + y])"; // pass
+        //let inputString = "";
+        //let inputString = ")";
+
+        
+        while(i < inputString.length())
+        {
+            let c = inputString.charAt(i);
+
+            if ((c = bracketsObject.charAt(0)) | (c = bracketsObject.charAt(1)) | (c = bracketsObject.charAt(2)))
+            {
+                do mystack.push(c);
+                let flag = 1;
+            }
+           
+           if(~(mystack.isEmpty()))
+           {
+                //Case ()
+                if(c = bracketsObject2.charAt(0))
+                {
+                    if(mystack.top() = bracketsObject.charAt(0))
+                    {
+                        do mystack.pop();
+                    }
+                    else
+                    {
+                        //break loop
+                        let i = i+10000;
+                    }
+                }
+                //Case []
+                if(c = bracketsObject2.charAt(1))
+                {
+                    if(mystack.top() = bracketsObject.charAt(1))
+                    {
+                        do mystack.pop();
+                    }
+                    else
+                    {
+                        //break loop
+                        let i = i+10000;
+                    }
+
+                }
+
+                //Case {}
+                if(c = bracketsObject2.charAt(2))
+                {
+                    //Provjeri top
+                    if(mystack.top() = bracketsObject.charAt(2))
+                    {
+                        do mystack.pop();
+                    }
+                    else
+                    {
+                        //break loop
+                        let i = i+10000;
+                    }
+
+                }
+           }
+
+            let i = i+1;
+
+           
+        }
+
+
+
+        //GUI
+        do Output.printString("Input string : ");
+        do Output.printString(inputString);
+        do Output.println();
+        do Output.printString("Is valid : ");
+        if(mystack.isEmpty() & flag = 1)
+        {
+            do Output.printString("True");
+        }
+        else
+        {
+            do Output.printString("False");
+        }
+
+
+        return;
+	}
+}

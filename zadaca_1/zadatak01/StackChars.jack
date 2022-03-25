@@ -1,0 +1,39 @@
+class StackChars {
+    field int top;
+    field int size; //// Maximum size of Stack
+    field Array array;
+
+    constructor StackChars new(int stackSize) {
+        let top = -1;
+        let size = stackSize;
+        let array = Array.new(stackSize);
+        return this;
+    }
+
+    method void push(char c ) {
+        let top = top + 1;
+        let array[top] = c;
+        return;
+    }
+
+    method void pop() {
+        let top = top - 1;
+        return;
+    }
+
+    method char top() {
+        return array[top];
+    }
+
+    method bool isEmpty()
+    {
+        return (top < 0);
+        
+    }
+    method void dispose() {
+
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+}

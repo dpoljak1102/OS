@@ -1,0 +1,80 @@
+class Main {
+
+	function void main() {
+
+        // Watch
+        do Screen.drawCircle(240,120,120);
+        
+        //White center
+        do Screen.setColor(false); 
+        do Screen.drawCircle(240,120,2);
+
+
+        //Mala
+        do Screen.drawLine(240,120, 240, 60); 
+        //Velika
+        do Screen.drawLine(240,120, 300, 60); 
+   
+        // ***  12 ***
+        do Screen.drawLine(230,10, 235, 30); 
+        do Screen.drawLine(230,30, 235, 10); 
+        do Screen.drawLine(240,10, 240, 30);
+        do Screen.drawLine(245,10, 245, 30);
+
+        // *** 6 ****
+        do Screen.drawLine(235,210, 240, 230);
+        do Screen.drawLine(245,210, 240, 230);
+        do Screen.drawLine(250,210, 250, 230);
+
+        // *** 3 ***
+        do Screen.drawLine(340,130, 340, 110);
+        do Screen.drawLine(345,130, 345, 110);
+        do Screen.drawLine(350,130, 350, 110);
+
+        // *** 9 ***
+        do Screen.drawLine(130,130, 130, 110);
+        do Screen.drawLine(135,130, 140, 110);
+        do Screen.drawLine(135,110, 140, 130);
+
+        // *** 1 ***
+        do Screen.drawLine(285,25, 285, 45);
+
+        // *** 2 ***
+        do Screen.drawLine(320,60, 320, 80);
+        do Screen.drawLine(325,60, 325, 80);
+
+        // *** 4 ***
+        do Screen.drawLine(320,160, 320, 180);
+        do Screen.drawLine(325,160, 330, 180);
+        do Screen.drawLine(335,160, 330, 180);
+
+        // *** 5 ***
+        do Screen.drawLine(285,200, 290, 220);
+        do Screen.drawLine(295,200, 290, 220);
+
+        // *** 7 ***
+        do Screen.drawLine(185,200, 190, 220);
+        do Screen.drawLine(195,200, 190, 220);
+        do Screen.drawLine(200,200, 200, 220);
+        do Screen.drawLine(205,200, 205, 220);
+
+        // *** 8 ***
+        do Screen.drawLine(145,160, 150, 180);
+        do Screen.drawLine(155,160, 150, 180);
+        do Screen.drawLine(160,160, 160, 180);
+        do Screen.drawLine(165,160, 165, 180);
+        do Screen.drawLine(170,160, 170, 180);
+        
+        // *** 10 ***
+        do Screen.drawLine(145,60, 150, 80);
+        do Screen.drawLine(145,80, 150, 60);
+
+        // *** 11 ***
+        do Screen.drawLine(180,25, 185, 45);
+        do Screen.drawLine(180,45, 185, 25);
+        do Screen.drawLine(190,25, 190, 45);
+
+
+        return;     
+	}
+}
