@@ -1,0 +1,37 @@
+class Main
+{
+    function void main()
+    {
+        do Output.printString("12/6 = ");
+        do Output.printInt(Math.divide(12, 6));
+        do Output.println();
+
+        do Output.printString("-12/6 = ");
+        do Output.printInt(Math.divide(-12, 6));
+        do Output.println();
+
+        do Output.printString("10/3 = ");
+        do Output.printInt(Math.divide(10, 3));
+        do Output.println();
+        
+
+        do Output.printString("log_2_(2) = ");
+        do Output.printInt(Math.log(2));
+        do Output.println();
+
+        do Output.printString("log_2_(7) = ");
+        do Output.printInt(Math.log(7));
+        do Output.println();
+
+        do Output.printString("5^3 = ");
+        do Output.printInt(Math.power(5,3));
+        do Output.println();
+
+        do Output.printString("2^6 = ");
+        do Output.printInt(Math.power(2,6));
+        do Output.println();
+     
+        
+        return;
+    }
+}

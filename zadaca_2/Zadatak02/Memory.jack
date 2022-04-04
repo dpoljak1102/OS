@@ -1,0 +1,171 @@
+/**
+ * Memory operations library.
+ */ 
+class Memory {
+
+    //static Array ram;
+    //static Array freeList; //linked list
+    static int MEMORY, HEAP_BASE, NEXT_POINTER, SIZE, HEAP_LIMIT, OOM, freeList, i;
+    
+    /** Initializes memory parameters. */
+    function void init() {
+        let MEMORY = 0;
+        let SIZE = 0;
+        let NEXT_POINTER = 1;
+        let HEAP_BASE = 2048;
+        let HEAP_LIMIT = 16383;
+        let freeList = HEAP_BASE;
+        let freeList[SIZE] = HEAP_LIMIT - HEAP_BASE;
+        let OOM = 137;
+        let i = 0;
+
+        return;
+    }
+
+    /** Returns the value of the main memory at the given address. */
+    function int peek(int address) {
+        return MEMORY[address];
+    }
+
+    /** Sets the value of the main memory at this address
+    *  to the given value. */
+    function void poke(int address, int value) {
+        let MEMORY[address] = value;
+        
+        return;
+    }
+
+    /** finds and allocates from the heap a memory block of the 
+    *  specified size and returns a reference to its base address. */
+    function int alloc(int size) {
+        var bool defragged;
+        var int currentFreeSegment, block, newFreeSegment, previousFreeSegment;
+
+        let defragged = false;
+        let currentFreeSegment = freeList;
+
+        while (~block) {
+
+            //A segment in freeList is available if the size passed in is less than the segment length.
+            if (currentFreeSegment[SIZE] > size) {
+                // If the first segment has a NEXT_POINTER,we just set the freeList pointer to the NEXT_POINTER.
+                // If not, we calculate that the next free segment is at freeList + size + 1,
+                // we set freeList to that, and update its SIZE.
+                if (currentFreeSegment = freeList) {
+                    if (currentFreeSegment[NEXT_POINTER]) {
+                        let freeList = currentFreeSegment[NEXT_POINTER];
+                    }
+                    else {
+                        let freeList = currentFreeSegment + size + 1;
+                        let freeList[SIZE] = currentFreeSegment[SIZE] - size - 1;
+                    }
+
+                } 
+                else {
+                    if (size < (currentFreeSegment[SIZE] - 2)) {
+                        let newFreeSegment = currentFreeSegment + size + 1;
+                        let newFreeSegment[SIZE] = currentFreeSegment[SIZE] - size - 1;
+                        let previousFreeSegment[NEXT_POINTER] = newFreeSegment;
+                    }   
+                    else {
+                        let previousFreeSegment[NEXT_POINTER] = currentFreeSegment[NEXT_POINTER];
+                    }
+                }
+
+            let block = currentFreeSegment + 1;
+            }
+            else {
+                //we need to defrag() or we’re out of memory
+                if (currentFreeSegment[NEXT_POINTER] = null) {
+
+                    if (defragged) {
+                        do Sys.error(OOM);
+                    } 
+                    else {
+                        do Memory.defrag();
+                        let defragged = true;
+                        let currentFreeSegment = freeList;
+                    }
+                } 
+                else {
+                    let previousFreeSegment = currentFreeSegment;
+                    let currentFreeSegment = currentFreeSegment[NEXT_POINTER];
+                }
+            }
+        }
+
+        let block[-1] = size + 1;
+        let block[0] = null;
+
+        return block;
+    }
+    //defrag combines contiguous segments in freeList.
+    function void defrag() {
+        var int currentFreeSegment, nextFreeSegment;
+
+        let currentFreeSegment = freeList;
+        let nextFreeSegment = currentFreeSegment[NEXT_POINTER];
+
+        while (~(nextFreeSegment = 0)) {
+        if ((currentFreeSegment + currentFreeSegment[SIZE]) = nextFreeSegment) {
+            let currentFreeSegment[SIZE] = currentFreeSegment[SIZE] + nextFreeSegment[SIZE];
+            let currentFreeSegment[NEXT_POINTER] = nextFreeSegment[NEXT_POINTER];
+            let nextFreeSegment[SIZE] = null;
+            let nextFreeSegment[NEXT_POINTER] = null;
+        }
+
+        let currentFreeSegment = nextFreeSegment;
+        let nextFreeSegment = currentFreeSegment[NEXT_POINTER];
+        }
+
+        return;
+    }
+
+    /** De-allocates the given object and frees its space. */
+    function void deAlloc(int block) {
+        var int segment, segmentLength, oldFreeList, currentFreeSegment, oldNextSegment;
+
+        let segment = block - 1;
+        let segmentLength = segment[0];
+
+        while (i < (segmentLength - 1)) {
+            let block[i] = null;
+            let i = i + 1;
+        }
+
+        if (segment < freeList) {
+            let oldFreeList = freeList;
+            let freeList = segment;
+            let freeList[NEXT_POINTER] = oldFreeList;
+            return;
+        }
+
+        let currentFreeSegment = freeList;
+
+        while ((currentFreeSegment[NEXT_POINTER] < segment) & currentFreeSegment[NEXT_POINTER]) {
+                let currentFreeSegment = currentFreeSegment[NEXT_POINTER];
+        }
+
+        if (currentFreeSegment[NEXT_POINTER] > 0) {
+            let oldNextSegment = currentFreeSegment[NEXT_POINTER];
+            let currentFreeSegment[NEXT_POINTER] = segment;
+            let segment[NEXT_POINTER] = oldNextSegment;
+        } 
+        else {
+            let currentFreeSegment[NEXT_POINTER] = segment;
+        }
+        
+        return;
+    }
+
+    function void memcpy(int dest, int src, int size) {
+        while(size>0){
+            let MEMORY[src] = MEMORY[dest];
+            let dest = dest + 1;
+            let src = src + 1;
+            let size = size - 1;
+        }
+        return;
+    }   
+
+}
