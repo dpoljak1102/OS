@@ -1,0 +1,13 @@
+class Main
+{
+    function void main()
+    {
+        do Output.printString("Pellentesque vitae viverra risus, non condimentum diam. Nam sed tortor at lorem molestie pharetra. Nulla efficitur sit amet elit faucibus luctus");
+        do Output.println();
+        do Output.printString("Pellentesque vitae viverra risus, non condimentum diam. Nam sed tortor at lorem molestie pharetra. Nulla efficitur sit amet elit faucibus luctus");
+        do Output.println();
+        do Output.moveCursor(0, 0);
+        do Output.printString("Pellentesque vitae viverra risus, non condimentum diam. Nam sed tortor at lorem molestie pharetra. Nulla efficitur sit amet elit faucibus luctus");
+        return;
+    }
+}
